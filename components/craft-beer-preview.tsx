@@ -1,14 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
-import { craftBeers } from "@/lib/beers"
+import { craftBeers, formatAlcoholVolDe, maxCraftBeerAlcohol } from "@/lib/beers"
 import { cn } from "@/lib/utils"
 
-function formatVolDe(at: number) {
-  return `${at.toLocaleString("de-AT", { minimumFractionDigits: 0, maximumFractionDigits: 1 })} % vol`
-}
-
 export default function CraftBeerPreview() {
-  const maxAlcohol = Math.max(...craftBeers.map((b) => b.alcohol))
+  const maxAlcohol = maxCraftBeerAlcohol()
 
   return (
     <section id="craftbier" className="py-24 bg-background">
@@ -27,21 +23,21 @@ export default function CraftBeerPreview() {
           </p>
         </div>
 
-        {/* Hinweis & Maximalwert der Auswahl (nicht auf den Karten) */}
-        <div className="mb-14 mx-auto max-w-2xl border border-[#a68b5b]/85 bg-[#1a1210] px-5 py-5 font-serif sm:px-7 sm:py-6 rounded-lg shadow-md">
-          <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[#c9a86c]">
+        {/* Hinweis & Maximalwert — im Seitenstil (Card / Primary) */}
+        <div className="mb-14 mx-auto max-w-2xl rounded-2xl border border-border bg-card px-6 py-6 text-center shadow-sm sm:px-8 sm:py-7">
+          <span className="mb-2 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-brand-slate">
             Maximalwert
+          </span>
+          <p className="font-serif text-4xl font-bold leading-none text-primary sm:text-5xl">
+            {formatAlcoholVolDe(maxAlcohol)}
           </p>
-          <p className="text-[2.25rem] font-bold leading-none tracking-tight text-[#f2ece6] sm:text-[2.5rem]">
-            {formatVolDe(maxAlcohol)}
-          </p>
-          <p className="mt-4 text-sm leading-relaxed text-[#c8bfb5]">
-            Diese Seite ist ein{" "}
-            <strong className="font-semibold text-[#e8e2da]">Informationsangebot</strong> über
+          <p className="mt-5 text-sm leading-relaxed text-muted-foreground text-pretty">
+            Diese Website ist ein{" "}
+            <strong className="font-semibold text-foreground">Informationsangebot</strong> über
             alkoholische Getränke (kein Verkauf, keine Bestellmöglichkeit).
           </p>
-          <p className="mt-3 text-xs leading-relaxed text-[#a69e94] sm:text-sm">
-            <span className="font-semibold text-[#c9a86c]">18+</span>
+          <p className="mt-3 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+            <span className="font-semibold text-primary">18+</span>
             {" — "}
             Dieser Alkohol ist nur für Personen ab 18 Jahren. Bitte trinken Sie
             verantwortungsbewusst.
@@ -59,7 +55,7 @@ export default function CraftBeerPreview() {
               className={cn(
                 "group rounded-2xl overflow-hidden border bg-card transition-all hover:shadow-xl hover:-translate-y-1",
                 isMaxAlcohol
-                  ? "border-[#a68b5b]/80 ring-2 ring-[#a68b5b]/35 shadow-md"
+                  ? "border-primary/45 ring-2 ring-primary/15 shadow-md"
                   : "border-border",
               )}
             >
@@ -72,7 +68,7 @@ export default function CraftBeerPreview() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {isMaxAlcohol && (
-                  <div className="absolute top-3 right-3 rounded-full border border-[#a68b5b]/60 bg-[#1a1210]/90 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-[#c9a86c] backdrop-blur-sm">
+                  <div className="absolute top-3 right-3 rounded-full border border-primary/35 bg-primary/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-primary backdrop-blur-sm">
                     Maximalwert
                   </div>
                 )}

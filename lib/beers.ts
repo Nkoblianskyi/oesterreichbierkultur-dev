@@ -60,3 +60,11 @@ export const craftBeers = [
     featured: false,
   },
 ]
+
+export function formatAlcoholVolDe(alcohol: number): string {
+  return `${alcohol.toLocaleString("de-AT", { minimumFractionDigits: 0, maximumFractionDigits: 1 })} % vol`
+}
+
+export function maxCraftBeerAlcohol(): number {
+  return Math.max(...craftBeers.map((b) => b.alcohol))
+}

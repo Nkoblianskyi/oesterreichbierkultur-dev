@@ -1,7 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
+import { formatAlcoholVolDe, maxCraftBeerAlcohol } from "@/lib/beers"
 
 export default function HeroSection() {
+  const maxAlcohol = maxCraftBeerAlcohol()
   return (
     <section className="relative min-h-screen flex flex-col">
       {/* Top thin brand stripe */}
@@ -58,19 +60,27 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Hinweis / Informationsangebot */}
-          <div className="mt-8 max-w-lg border-t border-border pt-6 space-y-3 text-xs leading-relaxed text-muted-foreground">
-            <p>
-              Diese Website ist ein{" "}
-              <strong className="font-semibold text-foreground">Informationsangebot</strong> über
-              alkoholische Getränke (kein Verkauf, keine Bestellmöglichkeit).
-            </p>
-            <p>
-              <span className="font-semibold text-foreground">18+</span>
-              {" — "}
-              Informationen über alkoholische Getränke richten sich nur an Personen ab 18 Jahren.
-              Bitte trinken Sie verantwortungsbewusst. Alkohol am Steuer – nein danke.
-            </p>
+          {/* Hinweis / Maximalwert — wie im Craftbier-Bereich */}
+          <div className="mt-8 max-w-lg border-t border-border pt-6">
+            <div className="rounded-2xl border border-border bg-card px-5 py-5 shadow-sm sm:px-6 sm:py-6">
+              <span className="mb-2 inline-block text-xs font-semibold uppercase tracking-[0.28em] text-brand-slate">
+                Maximalwert
+              </span>
+              <p className="font-serif text-3xl font-bold leading-none text-primary sm:text-4xl">
+                {formatAlcoholVolDe(maxAlcohol)}
+              </p>
+              <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                Diese Website ist ein{" "}
+                <strong className="font-semibold text-foreground">Informationsangebot</strong> über
+                alkoholische Getränke (kein Verkauf, keine Bestellmöglichkeit).
+              </p>
+              <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                <span className="font-semibold text-primary">18+</span>
+                {" — "}
+                Dieser Alkohol ist nur für Personen ab 18 Jahren. Bitte trinken Sie
+                verantwortungsbewusst. Alkohol am Steuer – nein danke.
+              </p>
+            </div>
           </div>
         </div>
 
