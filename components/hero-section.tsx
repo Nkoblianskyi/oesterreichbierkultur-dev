@@ -58,12 +58,20 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Age disclaimer – inline text, no modal */}
-          <p className="mt-8 text-xs leading-relaxed text-muted-foreground border-t border-border pt-6 max-w-md">
-            <span className="font-semibold text-foreground">18+</span> – Diese Website enthält
-            Informationen über alkoholische Getränke. Der Konsum von Alkohol ist erst ab 18 Jahren
-            erlaubt. Bitte trinken Sie verantwortungsvoll. Alkohol am Steuer – nein danke.
-          </p>
+          {/* Hinweis / Informationsangebot */}
+          <div className="mt-8 max-w-lg border-t border-border pt-6 space-y-3 text-xs leading-relaxed text-muted-foreground">
+            <p>
+              Diese Website ist ein{" "}
+              <strong className="font-semibold text-foreground">Informationsangebot</strong> über
+              alkoholische Getränke (kein Verkauf, keine Bestellmöglichkeit).
+            </p>
+            <p>
+              <span className="font-semibold text-foreground">18+</span>
+              {" — "}
+              Informationen über alkoholische Getränke richten sich nur an Personen ab 18 Jahren.
+              Bitte trinken Sie verantwortungsbewusst. Alkohol am Steuer – nein danke.
+            </p>
+          </div>
         </div>
 
         {/* RIGHT – full-height image */}

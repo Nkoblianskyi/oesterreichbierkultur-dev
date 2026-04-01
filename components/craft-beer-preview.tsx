@@ -27,6 +27,27 @@ export default function CraftBeerPreview() {
           </p>
         </div>
 
+        {/* Hinweis & Maximalwert der Auswahl (nicht auf den Karten) */}
+        <div className="mb-14 mx-auto max-w-2xl border border-[#a68b5b]/85 bg-[#1a1210] px-5 py-5 font-serif sm:px-7 sm:py-6 rounded-lg shadow-md">
+          <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[#c9a86c]">
+            Maximalwert
+          </p>
+          <p className="text-[2.25rem] font-bold leading-none tracking-tight text-[#f2ece6] sm:text-[2.5rem]">
+            {formatVolDe(maxAlcohol)}
+          </p>
+          <p className="mt-4 text-sm leading-relaxed text-[#c8bfb5]">
+            Diese Seite ist ein{" "}
+            <strong className="font-semibold text-[#e8e2da]">Informationsangebot</strong> über
+            alkoholische Getränke (kein Verkauf, keine Bestellmöglichkeit).
+          </p>
+          <p className="mt-3 text-xs leading-relaxed text-[#a69e94] sm:text-sm">
+            <span className="font-semibold text-[#c9a86c]">18+</span>
+            {" — "}
+            Dieser Alkohol ist nur für Personen ab 18 Jahren. Bitte trinken Sie
+            verantwortungsbewusst.
+          </p>
+        </div>
+
         {/* Beer grid */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {craftBeers.map((beer) => {
@@ -38,17 +59,12 @@ export default function CraftBeerPreview() {
               className={cn(
                 "group rounded-2xl overflow-hidden border bg-card transition-all hover:shadow-xl hover:-translate-y-1",
                 isMaxAlcohol
-                  ? "border-[#a68b5b]/80 ring-2 ring-[#a68b5b]/35 shadow-lg shadow-[#1a1210]/15"
+                  ? "border-[#a68b5b]/80 ring-2 ring-[#a68b5b]/35 shadow-md"
                   : "border-border",
               )}
             >
               {/* Image */}
-              <div
-                className={cn(
-                  "relative overflow-hidden",
-                  isMaxAlcohol ? "h-[17rem] sm:h-[18rem]" : "h-56",
-                )}
-              >
+              <div className="relative h-56 overflow-hidden">
                 <Image
                   src={beer.image}
                   alt={beer.name}
@@ -56,35 +72,13 @@ export default function CraftBeerPreview() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {isMaxAlcohol && (
-                  <>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#120c0a] via-[#120c0a]/75 to-transparent" />
-                    <div className="absolute inset-x-3 bottom-3 border border-[#a68b5b]/85 bg-[#1a1210]/92 p-3.5 font-serif shadow-md backdrop-blur-[2px] sm:inset-x-3.5 sm:bottom-3.5 sm:p-4">
-                      <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-[#c9a86c]">
-                        Maximalwert
-                      </p>
-                      <p className="text-[2.1rem] font-bold leading-none tracking-tight text-[#f2ece6] sm:text-[2.35rem]">
-                        {formatVolDe(beer.alcohol)}
-                      </p>
-                      <p className="mt-3 text-[0.7rem] leading-snug text-[#c8bfb5] sm:text-xs">
-                        Diese Seite ist ein{" "}
-                        <strong className="font-semibold text-[#e8e2da]">Informationsangebot</strong>{" "}
-                        über alkoholische Getränke (kein Verkauf, keine Bestellmöglichkeit).
-                      </p>
-                      <p className="mt-2.5 text-[0.65rem] leading-snug text-[#a69e94] sm:text-[0.7rem]">
-                        <span className="font-semibold text-[#c9a86c]">18+</span>
-                        {" — "}
-                        Dieser Alkohol ist nur für Personen ab 18 Jahren. Bitte trinken Sie
-                        verantwortungsbewusst.
-                      </p>
-                    </div>
-                  </>
-                )}
-                {/* Alcohol badge */}
-                {!isMaxAlcohol && (
-                  <div className="absolute bottom-3 left-3 rounded-full bg-foreground/80 px-3 py-1 text-xs font-bold text-background backdrop-blur-sm">
-                    {beer.alcohol}% Vol.
+                  <div className="absolute top-3 right-3 rounded-full border border-[#a68b5b]/60 bg-[#1a1210]/90 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-[#c9a86c] backdrop-blur-sm">
+                    Maximalwert
                   </div>
                 )}
+                <div className="absolute bottom-3 left-3 rounded-full bg-foreground/80 px-3 py-1 text-xs font-bold text-background backdrop-blur-sm">
+                  {beer.alcohol}% Vol.
+                </div>
               </div>
 
               {/* Content */}
