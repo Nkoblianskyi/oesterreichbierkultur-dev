@@ -68,7 +68,7 @@ export default function CraftBeerPreview() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 {isMaxAlcohol && (
-                  <div className="absolute top-3 right-3 rounded-full border border-primary/35 bg-primary/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-primary backdrop-blur-sm">
+                  <div className="absolute top-3 right-3 rounded-full border border-primary/75 bg-primary/90 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-wider text-primary backdrop-blur-sm">
                     Maximalwert
                   </div>
                 )}
